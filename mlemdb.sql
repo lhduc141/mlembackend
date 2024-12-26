@@ -68,17 +68,17 @@ VALUES (
     (SELECT roleId FROM Role WHERE roleName = 'admin'),
     'Admin',
     'lhduc141@gmail.com',
-    MD5('140103'),
+    '140103',
     '0123456789',
     'Địa chỉ admin'
 );
 
 -- Thêm các user khác (vẫn dùng MD5 cho demo, NHỚ THAY THẾ!)
 INSERT INTO User (roleId, userName, userEmail, userPassword, userPhone, userAddress)
-VALUES (2, 'Tien Luan', 'tienluan@gmail.com', MD5('123345'), '9876543210', 'User Address 1');
+VALUES (2, 'Tien Luan', 'tienluan@gmail.com', '123345', '9876543210', 'User Address 1');
 
 INSERT INTO User (roleId, userName, userEmail, userPassword, userPhone, userAddress)
-VALUES (2, 'User 3', 'user3@gmail.com', MD5('123345'), '1112223334', 'User Address 2');
+VALUES (2, 'User 3', 'user3@gmail.com', '123345', '1112223334', 'User Address 2');
 
 -- Thêm dữ liệu cho bảng Category
 INSERT INTO Category (categoryName) VALUES ('Fried Snacks');
