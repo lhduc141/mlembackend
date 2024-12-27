@@ -37,7 +37,7 @@ export const signUpService = async (
     });
 
     if (existingUser) {
-      return { error: "Email đã được sử dụng", status: 400 };
+      return { error: "Email has been used", status: 400 };
     }
 
     let newUser = await model.User.create({
