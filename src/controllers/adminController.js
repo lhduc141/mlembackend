@@ -53,9 +53,9 @@ export default class AdminController {
   // Chỉnh sửa món ăn
   static async updateMenuItem(req, res) {
     const { itemId } = req.params;
-    const { itemName, itemPrice } = req.body;
+    const { itemName, itemPrice,itemDescription,itemImage } = req.body;
 
-    if (!itemId || !itemName || !itemPrice) {
+    if (!itemId || !itemName || !itemPrice || !itemDescription || !itemImage) {
       return responseData(
         res,
         null,
@@ -67,7 +67,10 @@ export default class AdminController {
     const { success, message, data, status } = await service.updateMenuItem(
       itemId,
       itemName,
-      itemPrice
+      itemPrice,
+      itemDescription,
+      itemImage
+
     );
 
     return responseData(res, message, data, status);

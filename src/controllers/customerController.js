@@ -22,4 +22,16 @@ export default class CustomerController {
     }
     return responseData(res, "Order success", data, status);
   }
+  static async postNewDish(req, res) {
+    const { categoryId, itemDescription, itemPrice, itemImage, itemName,userId  } = req.body;
+    const { error, data, status } = await service.postNewDish(
+      categoryId, itemDescription, itemPrice, itemImage, itemName,userId
+    )
+
+    if (error) {
+      return responseData(res, error, "create Menu Fail", status);
+    }
+    return responseData(res, "add dish success", data, status);
+  }
+  
 }

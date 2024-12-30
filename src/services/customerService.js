@@ -90,3 +90,57 @@ export const postNewOrder = async (userId, orderList) => {
     };
   }
 };
+
+export const postNewDish = async (categoryId, itemDescription, itemPrice, itemImage, itemName,userId) => {
+  try {
+    const user = await model.User.findOne({ where: { userId } });
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (user.roleId !== 1) {
+      throw new Error("User are not allowed to create Menu");
+    }
+
+    
+  try {
+    const newDish = await model.MenuItem.create({
+      categoryId: categoryId ,
+      itemName: itemName,
+      itemPrice: itemPrice,
+      itemDescription: itemDescription,
+      itemImage: itemImage
+    });
+    console.log('New dish added:', newDish.itemId);
+  } catch (error) {
+    console.error('Error adding new dish:', error);
+  }
+
+    // const newOrder = await model.Order.create({
+    //   userId,
+    //   orderDate: new Date(),
+    //   orderStatus: "Pending",
+    // });
+    // const orderItems = orderList.map((item) => ({
+    //   orderId: newOrder.orderId,
+    //   itemId: item.itemId,
+    //   quantity: item.quantity,
+    // }));
+    // await model.OrderItem.bulkCreate(orderItems);
+
+    return {
+      success: true,
+      message: "Order created successfully",
+      data: { newDish: newOrder.orderId },
+      status: 201,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Dish creation failed",
+      data: null,
+      status: 500,
+    };
+  }
+};
+

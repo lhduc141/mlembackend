@@ -157,7 +157,8 @@ export const postCompleteOrderStatus = async (orderId) => {
   }
 };
 
-export const updateMenuItem = async (itemId, itemName, itemPrice) => {
+export const updateMenuItem = async (itemId, itemName, itemPrice, itemDescription,
+  itemImage) => {
   try {
     const menuItem = await model.MenuItem.findOne({ where: { itemId } });
 
@@ -172,6 +173,8 @@ export const updateMenuItem = async (itemId, itemName, itemPrice) => {
     await menuItem.update({
       itemName,
       itemPrice,
+      itemDescription,
+      itemImage
     });
 
     return {
